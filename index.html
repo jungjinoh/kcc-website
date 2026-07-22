@@ -1,9 +1,4 @@
-from pathlib import Path
-
-mint = "EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc"
-pool = "CKLZCu5UPAHw171xLQPwErutqf95aPUQrYY28meqQcPF"
-
-html = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +6,7 @@ html = f"""<!DOCTYPE html>
   <meta name="description" content="Official website of Korean Curiosity Coin (KCC), a community-driven Solana token project." />
   <title>Korean Curiosity Coin | KCC</title>
   <style>
-    :root {{
+    :root {
       --green-950:#031d12;
       --green-900:#052b1a;
       --green-800:#0a4426;
@@ -26,50 +21,50 @@ html = f"""<!DOCTYPE html>
       --line:#dce3d8;
       --white:#ffffff;
       --shadow:0 18px 50px rgba(2,35,20,.16);
-    }}
+    }
 
-    * {{ box-sizing:border-box; margin:0; padding:0; }}
-    html {{ scroll-behavior:smooth; }}
-    body {{
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
       font-family: Inter, Pretendard, "Noto Sans KR", Arial, sans-serif;
       background:linear-gradient(180deg,#f9faf6 0%,#eef3ec 100%);
       color:var(--ink);
       line-height:1.55;
-    }}
-    a {{ color:inherit; text-decoration:none; }}
-    img {{ max-width:100%; display:block; }}
+    }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
 
-    .container {{
+    .container {
       width:min(1180px, calc(100% - 32px));
       margin:auto;
-    }}
+    }
 
-    header {{
+    header {
       position:sticky;
       top:0;
       z-index:50;
       background:rgba(3,29,18,.92);
       backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(255,255,255,.08);
-    }}
+    }
 
-    .nav {{
+    .nav {
       height:76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:24px;
-    }}
+    }
 
-    .brand {{
+    .brand {
       display:flex;
       align-items:center;
       gap:12px;
       color:white;
       min-width:max-content;
-    }}
+    }
 
-    .brand-mark {{
+    .brand-mark {
       width:44px;
       height:44px;
       border-radius:50%;
@@ -83,36 +78,36 @@ html = f"""<!DOCTYPE html>
         radial-gradient(circle at 45% 40%, var(--gold-light), var(--gold) 58%, #8a5a0a 100%);
       border:2px solid #f1cf72;
       box-shadow:0 0 0 3px rgba(240,205,108,.15);
-    }}
+    }
 
-    .brand-text strong {{
+    .brand-text strong {
       display:block;
       font-size:18px;
       line-height:1;
       letter-spacing:.5px;
-    }}
+    }
 
-    .brand-text span {{
+    .brand-text span {
       font-size:10px;
       opacity:.75;
-    }}
+    }
 
-    .nav-links {{
+    .nav-links {
       display:flex;
       align-items:center;
       gap:26px;
       color:rgba(255,255,255,.82);
       font-size:13px;
       font-weight:700;
-    }}
+    }
 
-    .nav-links a {{
+    .nav-links a {
       position:relative;
       transition:.2s ease;
-    }}
+    }
 
-    .nav-links a:hover {{ color:var(--lime); }}
-    .nav-links a::after {{
+    .nav-links a:hover { color:var(--lime); }
+    .nav-links a::after {
       content:"";
       position:absolute;
       left:0;
@@ -121,19 +116,19 @@ html = f"""<!DOCTYPE html>
       height:2px;
       background:var(--lime);
       transition:.2s ease;
-    }}
-    .nav-links a:hover::after {{ width:100%; }}
+    }
+    .nav-links a:hover::after { width:100%; }
 
-    .menu-btn {{
+    .menu-btn {
       display:none;
       border:0;
       background:transparent;
       color:white;
       font-size:26px;
       cursor:pointer;
-    }}
+    }
 
-    .hero {{
+    .hero {
       position:relative;
       overflow:hidden;
       background:
@@ -145,9 +140,9 @@ html = f"""<!DOCTYPE html>
       display:flex;
       align-items:center;
       border-bottom:1px solid rgba(255,255,255,.08);
-    }}
+    }
 
-    .hero::before {{
+    .hero::before {
       content:"";
       position:absolute;
       inset:0;
@@ -158,9 +153,9 @@ html = f"""<!DOCTYPE html>
       background-size:84px 84px;
       transform:perspective(700px) rotateX(62deg) translateY(18%);
       transform-origin:center bottom;
-    }}
+    }
 
-    .hero::after {{
+    .hero::after {
       content:"";
       position:absolute;
       width:640px;
@@ -173,9 +168,9 @@ html = f"""<!DOCTYPE html>
         0 0 0 45px rgba(125,255,80,.025),
         0 0 0 90px rgba(125,255,80,.018),
         0 0 120px rgba(125,255,80,.12);
-    }}
+    }
 
-    .hero-grid {{
+    .hero-grid {
       position:relative;
       z-index:2;
       display:grid;
@@ -183,9 +178,9 @@ html = f"""<!DOCTYPE html>
       align-items:center;
       gap:64px;
       padding:90px 0;
-    }}
+    }
 
-    .eyebrow {{
+    .eyebrow {
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -199,44 +194,44 @@ html = f"""<!DOCTYPE html>
       letter-spacing:1.6px;
       text-transform:uppercase;
       margin-bottom:20px;
-    }}
+    }
 
-    h1 {{
+    h1 {
       font-size:clamp(68px, 10vw, 132px);
       line-height:.82;
       letter-spacing:-7px;
       font-style:italic;
       margin-bottom:14px;
-    }}
+    }
 
-    .subtitle {{
+    .subtitle {
       color:#a8ff7d;
       font-weight:800;
       font-size:clamp(20px, 2.6vw, 34px);
       margin-bottom:20px;
-    }}
+    }
 
-    .tagline {{
+    .tagline {
       font-size:clamp(20px,2vw,30px);
       font-weight:700;
       margin-bottom:18px;
-    }}
+    }
 
-    .hero-copy {{
+    .hero-copy {
       color:rgba(255,255,255,.74);
       max-width:600px;
       font-size:16px;
       margin-bottom:30px;
-    }}
+    }
 
-    .hero-actions {{
+    .hero-actions {
       display:flex;
       flex-wrap:wrap;
       gap:12px;
       margin-bottom:24px;
-    }}
+    }
 
-    .btn {{
+    .btn {
       min-height:48px;
       padding:0 20px;
       display:inline-flex;
@@ -248,22 +243,22 @@ html = f"""<!DOCTYPE html>
       font-weight:800;
       transition:.2s ease;
       cursor:pointer;
-    }}
+    }
 
-    .btn-primary {{
+    .btn-primary {
       background:linear-gradient(135deg,#8dff42,#37b83f);
       color:#062414;
       box-shadow:0 12px 30px rgba(88,231,65,.24);
-    }}
-    .btn-primary:hover {{ transform:translateY(-2px); box-shadow:0 16px 34px rgba(88,231,65,.32); }}
-    .btn-secondary {{
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 16px 34px rgba(88,231,65,.32); }
+    .btn-secondary {
       border-color:rgba(255,255,255,.34);
       color:white;
       background:rgba(255,255,255,.04);
-    }}
-    .btn-secondary:hover {{ border-color:var(--lime); color:var(--lime); }}
+    }
+    .btn-secondary:hover { border-color:var(--lime); color:var(--lime); }
 
-    .mint-box {{
+    .mint-box {
       width:min(100%,650px);
       display:flex;
       align-items:center;
@@ -274,38 +269,38 @@ html = f"""<!DOCTYPE html>
       border:1px solid rgba(255,255,255,.12);
       color:rgba(255,255,255,.78);
       font-size:12px;
-    }}
-    .mint-box code {{
+    }
+    .mint-box code {
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
       flex:1;
-    }}
-    .copy-btn {{
+    }
+    .copy-btn {
       border:0;
       background:transparent;
       color:var(--lime);
       font-weight:800;
       cursor:pointer;
-    }}
+    }
 
-    .coin-wrap {{
+    .coin-wrap {
       display:grid;
       place-items:center;
       min-height:470px;
       position:relative;
-    }}
+    }
 
-    .coin-glow {{
+    .coin-glow {
       position:absolute;
       width:430px;
       height:430px;
       border-radius:50%;
       background:radial-gradient(circle,rgba(124,255,71,.24),transparent 68%);
       filter:blur(10px);
-    }}
+    }
 
-    .coin {{
+    .coin {
       width:min(420px, 80vw);
       aspect-ratio:1;
       border-radius:50%;
@@ -322,9 +317,9 @@ html = f"""<!DOCTYPE html>
         inset 0 0 0 10px #f0cf76,
         0 34px 70px rgba(0,0,0,.45),
         0 0 70px rgba(158,255,82,.16);
-    }}
+    }
 
-    .coin::before {{
+    .coin::before {
       content:"KOREAN CURIOSITY COIN";
       position:absolute;
       top:34px;
@@ -332,9 +327,9 @@ html = f"""<!DOCTYPE html>
       font-weight:900;
       letter-spacing:2.4px;
       color:#6b470d;
-    }}
+    }
 
-    .coin::after {{
+    .coin::after {
       content:"EST. 2026";
       position:absolute;
       bottom:34px;
@@ -342,9 +337,9 @@ html = f"""<!DOCTYPE html>
       font-weight:900;
       letter-spacing:2px;
       color:#6b470d;
-    }}
+    }
 
-    .coin-inner {{
+    .coin-inner {
       width:72%;
       height:72%;
       border-radius:50%;
@@ -356,99 +351,99 @@ html = f"""<!DOCTYPE html>
       color:#0c5b2e;
       text-align:center;
       box-shadow:inset 0 0 30px rgba(255,255,255,.12);
-    }}
+    }
 
-    .coin-kcc {{
+    .coin-kcc {
       font-size:72px;
       line-height:1;
       letter-spacing:-5px;
       font-style:italic;
       font-weight:950;
-    }}
-    .coin-name {{
+    }
+    .coin-name {
       font-size:14px;
       color:#164b2c;
       font-weight:800;
-    }}
-    .coin-symbol {{
+    }
+    .coin-symbol {
       font-size:48px;
       line-height:1;
       margin-bottom:4px;
       font-family:Georgia,serif;
       font-style:italic;
-    }}
+    }
 
-    section {{
+    section {
       padding:92px 0;
-    }}
+    }
 
-    .section-head {{
+    .section-head {
       max-width:760px;
       margin-bottom:38px;
-    }}
-    .section-head span {{
+    }
+    .section-head span {
       color:var(--green-700);
       text-transform:uppercase;
       letter-spacing:2px;
       font-size:12px;
       font-weight:900;
-    }}
-    .section-head h2 {{
+    }
+    .section-head h2 {
       font-size:clamp(34px,5vw,56px);
       line-height:1.04;
       letter-spacing:-2px;
       margin-top:8px;
-    }}
-    .section-head p {{
+    }
+    .section-head p {
       color:var(--muted);
       margin-top:14px;
-    }}
+    }
 
-    .overview {{
+    .overview {
       margin-top:-52px;
       position:relative;
       z-index:5;
-    }}
+    }
 
-    .card-grid {{
+    .card-grid {
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:16px;
-    }}
+    }
 
-    .info-card {{
+    .info-card {
       background:rgba(255,255,255,.96);
       border:1px solid var(--line);
       border-radius:16px;
       padding:24px;
       min-height:320px;
       box-shadow:var(--shadow);
-    }}
+    }
 
-    .info-card h3 {{
+    .info-card h3 {
       color:var(--green-700);
       font-size:14px;
       text-transform:uppercase;
       letter-spacing:.6px;
       margin-bottom:18px;
-    }}
+    }
 
-    .big-number {{
+    .big-number {
       font-size:28px;
       font-weight:950;
       line-height:1.1;
       margin-bottom:20px;
-    }}
+    }
 
-    .donut {{
+    .donut {
       width:154px;
       height:154px;
       margin:18px auto;
       border-radius:50%;
       background:conic-gradient(#0f6c36 0 20%, #3fa53e 20% 60%, #8bcf72 60% 90%, #cfeac5 90% 100%);
       position:relative;
-    }}
-    .donut::after {{
+    }
+    .donut::after {
       content:"KCC";
       position:absolute;
       inset:27px;
@@ -458,31 +453,31 @@ html = f"""<!DOCTYPE html>
       place-items:center;
       font-weight:950;
       color:var(--green-700);
-    }}
+    }
 
-    .legend {{
+    .legend {
       display:grid;
       gap:8px;
       font-size:12px;
       color:var(--muted);
-    }}
-    .legend div {{
+    }
+    .legend div {
       display:flex;
       justify-content:space-between;
       gap:10px;
-    }}
+    }
 
-    .fact-list {{
+    .fact-list {
       display:grid;
       gap:13px;
       font-size:13px;
-    }}
-    .fact {{
+    }
+    .fact {
       display:flex;
       gap:11px;
       align-items:flex-start;
-    }}
-    .icon {{
+    }
+    .icon {
       width:28px;
       height:28px;
       border-radius:8px;
@@ -492,17 +487,17 @@ html = f"""<!DOCTYPE html>
       place-items:center;
       color:var(--green-700);
       font-weight:950;
-    }}
-    .fact b {{ display:block; font-size:12px; }}
-    .fact span {{ color:var(--muted); font-size:12px; }}
+    }
+    .fact b { display:block; font-size:12px; }
+    .fact span { color:var(--muted); font-size:12px; }
 
-    .roadmap-mini {{
+    .roadmap-mini {
       position:relative;
       padding-left:24px;
       display:grid;
       gap:16px;
-    }}
-    .roadmap-mini::before {{
+    }
+    .roadmap-mini::before {
       content:"";
       position:absolute;
       left:6px;
@@ -510,12 +505,12 @@ html = f"""<!DOCTYPE html>
       bottom:8px;
       width:2px;
       background:#45a846;
-    }}
-    .phase {{
+    }
+    .phase {
       position:relative;
       font-size:12px;
-    }}
-    .phase::before {{
+    }
+    .phase::before {
       content:"";
       position:absolute;
       width:10px;
@@ -524,74 +519,74 @@ html = f"""<!DOCTYPE html>
       background:#45a846;
       left:-22px;
       top:4px;
-    }}
-    .phase.pending::before {{ background:white; border:2px solid #45a846; }}
-    .phase b {{ display:block; }}
-    .phase span {{ color:var(--muted); }}
+    }
+    .phase.pending::before { background:white; border:2px solid #45a846; }
+    .phase b { display:block; }
+    .phase span { color:var(--muted); }
 
-    .quote {{
+    .quote {
       font-size:15px;
       color:var(--muted);
       margin-top:24px;
-    }}
-    .quote strong {{
+    }
+    .quote strong {
       color:var(--green-700);
       display:block;
       font-size:20px;
       margin-top:18px;
-    }}
+    }
 
-    .dark-section {{
+    .dark-section {
       background:var(--green-950);
       color:white;
       position:relative;
       overflow:hidden;
-    }}
-    .dark-section::before {{
+    }
+    .dark-section::before {
       content:"";
       position:absolute;
       inset:0;
       opacity:.18;
       background-image:radial-gradient(circle at 1px 1px, #8aff3f 1px, transparent 0);
       background-size:28px 28px;
-    }}
-    .dark-section .container {{ position:relative; z-index:2; }}
+    }
+    .dark-section .container { position:relative; z-index:2; }
 
-    .tokenomics-grid {{
+    .tokenomics-grid {
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:40px;
       align-items:center;
-    }}
-    .bars {{ display:grid; gap:18px; }}
-    .bar-row {{ display:grid; gap:7px; }}
-    .bar-label {{ display:flex; justify-content:space-between; font-size:13px; }}
-    .bar {{
+    }
+    .bars { display:grid; gap:18px; }
+    .bar-row { display:grid; gap:7px; }
+    .bar-label { display:flex; justify-content:space-between; font-size:13px; }
+    .bar {
       height:12px;
       border-radius:999px;
       background:rgba(255,255,255,.08);
       overflow:hidden;
-    }}
-    .bar > span {{
+    }
+    .bar > span {
       display:block;
       height:100%;
       border-radius:inherit;
       background:linear-gradient(90deg,#39a844,#8aff3f);
-    }}
+    }
 
-    .roadmap-grid {{
+    .roadmap-grid {
       display:grid;
       grid-template-columns:repeat(5,1fr);
       gap:14px;
-    }}
-    .road-card {{
+    }
+    .road-card {
       border:1px solid var(--line);
       background:white;
       border-radius:14px;
       padding:22px;
       min-height:190px;
-    }}
-    .road-card .num {{
+    }
+    .road-card .num {
       width:36px;
       height:36px;
       border-radius:50%;
@@ -601,24 +596,24 @@ html = f"""<!DOCTYPE html>
       place-items:center;
       font-weight:950;
       margin-bottom:20px;
-    }}
-    .road-card h3 {{ margin-bottom:8px; }}
-    .road-card p {{ color:var(--muted); font-size:14px; }}
+    }
+    .road-card h3 { margin-bottom:8px; }
+    .road-card p { color:var(--muted); font-size:14px; }
 
-    .about-grid {{
+    .about-grid {
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:42px;
       align-items:center;
-    }}
-    .about-box {{
+    }
+    .about-box {
       background:white;
       border:1px solid var(--line);
       border-radius:18px;
       padding:32px;
       box-shadow:var(--shadow);
-    }}
-    .about-symbol {{
+    }
+    .about-symbol {
       width:120px;
       height:120px;
       border-radius:28px;
@@ -630,9 +625,9 @@ html = f"""<!DOCTYPE html>
       font-family:Georgia,serif;
       font-style:italic;
       margin-bottom:24px;
-    }}
+    }
 
-    .whitepaper {{
+    .whitepaper {
       border:1px solid rgba(255,255,255,.12);
       background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
       border-radius:20px;
@@ -641,25 +636,25 @@ html = f"""<!DOCTYPE html>
       align-items:center;
       justify-content:space-between;
       gap:30px;
-    }}
-    .whitepaper p {{ color:rgba(255,255,255,.7); max-width:680px; }}
+    }
+    .whitepaper p { color:rgba(255,255,255,.7); max-width:680px; }
 
-    footer {{
+    footer {
       background:#02170e;
       color:rgba(255,255,255,.62);
       padding:34px 0;
       font-size:12px;
-    }}
-    .footer-row {{
+    }
+    .footer-row {
       display:flex;
       justify-content:space-between;
       gap:20px;
       align-items:center;
       flex-wrap:wrap;
-    }}
+    }
 
-    @media (max-width: 980px) {{
-      .nav-links {{
+    @media (max-width: 980px) {
+      .nav-links {
         position:absolute;
         left:16px;
         right:16px;
@@ -671,35 +666,35 @@ html = f"""<!DOCTYPE html>
         border-radius:14px;
         background:#062a19;
         border:1px solid rgba(255,255,255,.1);
-      }}
-      .nav-links.open {{ display:flex; }}
-      .menu-btn {{ display:block; }}
+      }
+      .nav-links.open { display:flex; }
+      .menu-btn { display:block; }
       .hero-grid,
       .tokenomics-grid,
-      .about-grid {{ grid-template-columns:1fr; }}
-      .hero-grid {{ text-align:center; gap:20px; }}
-      .hero-copy, .mint-box {{ margin-left:auto; margin-right:auto; }}
-      .hero-actions {{ justify-content:center; }}
-      .coin-wrap {{ min-height:380px; }}
-      .card-grid {{ grid-template-columns:repeat(2,1fr); }}
-      .roadmap-grid {{ grid-template-columns:repeat(2,1fr); }}
-    }}
+      .about-grid { grid-template-columns:1fr; }
+      .hero-grid { text-align:center; gap:20px; }
+      .hero-copy, .mint-box { margin-left:auto; margin-right:auto; }
+      .hero-actions { justify-content:center; }
+      .coin-wrap { min-height:380px; }
+      .card-grid { grid-template-columns:repeat(2,1fr); }
+      .roadmap-grid { grid-template-columns:repeat(2,1fr); }
+    }
 
-    @media (max-width: 620px) {{
-      .container {{ width:min(100% - 20px,1180px); }}
-      .nav {{ height:68px; }}
-      .brand-text span {{ display:none; }}
-      .hero {{ min-height:auto; }}
-      .hero-grid {{ padding:72px 0 94px; }}
-      h1 {{ font-size:76px; letter-spacing:-5px; }}
-      .coin {{ width:290px; }}
-      .coin::before, .coin::after {{ font-size:10px; }}
-      .coin-kcc {{ font-size:54px; }}
-      .card-grid, .roadmap-grid {{ grid-template-columns:1fr; }}
-      .overview {{ margin-top:-34px; }}
-      section {{ padding:72px 0; }}
-      .whitepaper {{ flex-direction:column; align-items:flex-start; padding:28px; }}
-    }}
+    @media (max-width: 620px) {
+      .container { width:min(100% - 20px,1180px); }
+      .nav { height:68px; }
+      .brand-text span { display:none; }
+      .hero { min-height:auto; }
+      .hero-grid { padding:72px 0 94px; }
+      h1 { font-size:76px; letter-spacing:-5px; }
+      .coin { width:290px; }
+      .coin::before, .coin::after { font-size:10px; }
+      .coin-kcc { font-size:54px; }
+      .card-grid, .roadmap-grid { grid-template-columns:1fr; }
+      .overview { margin-top:-34px; }
+      section { padding:72px 0; }
+      .whitepaper { flex-direction:column; align-items:flex-start; padding:28px; }
+    }
   </style>
 </head>
 <body>
@@ -742,14 +737,14 @@ html = f"""<!DOCTYPE html>
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://solscan.io/token/{mint}" target="_blank" rel="noopener">View Token</a>
-          <a class="btn btn-secondary" href="https://raydium.io/liquidity-pools/?ammId={pool}" target="_blank" rel="noopener">View Liquidity</a>
+          <a class="btn btn-primary" href="https://solscan.io/token/EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc" target="_blank" rel="noopener">View Token</a>
+          <a class="btn btn-secondary" href="https://raydium.io/liquidity-pools/?ammId=CKLZCu5UPAHw171xLQPwErutqf95aPUQrYY28meqQcPF" target="_blank" rel="noopener">View Liquidity</a>
           <a class="btn btn-secondary" href="#whitepaper">Whitepaper</a>
         </div>
 
         <div class="mint-box">
           <span>Mint</span>
-          <code id="mintAddress">{mint}</code>
+          <code id="mintAddress">EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc</code>
           <button class="copy-btn" id="copyMint">COPY</button>
         </div>
       </div>
@@ -931,22 +926,17 @@ html = f"""<!DOCTYPE html>
   menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  document.getElementById('copyMint').addEventListener('click', async () => {{
+  document.getElementById('copyMint').addEventListener('click', async () => {
     const text = document.getElementById('mintAddress').textContent.trim();
-    try {{
+    try {
       await navigator.clipboard.writeText(text);
       const btn = document.getElementById('copyMint');
       btn.textContent = 'COPIED';
       setTimeout(() => btn.textContent = 'COPY', 1500);
-    }} catch (e) {{
+    } catch (e) {
       alert(text);
-    }}
-  }});
+    }
+  });
 </script>
 </body>
 </html>
-"""
-
-out = Path("/mnt/data/kcc_index_v2.html")
-out.write_text(html, encoding="utf-8")
-print(f"Created: {out} ({out.stat().st_size:,} bytes)")
