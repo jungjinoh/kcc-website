@@ -1,703 +1,952 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+mint = "EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc"
+pool = "CKLZCu5UPAHw171xLQPwErutqf95aPUQrYY28meqQcPF"
+
+html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official website of Korean Curiosity Coin (KCC), a community-driven Solana token project." />
   <title>Korean Curiosity Coin | KCC</title>
-
-  <meta
-    name="description"
-    content="Korean Curiosity Coin (KCC) is a community-driven project built on the Solana blockchain."
-  >
-
   <style>
-    :root {
-      --bg: #050713;
-      --card: rgba(20, 24, 48, 0.72);
-      --text: #f5f7ff;
-      --muted: #a9b0cf;
-      --purple: #9945ff;
-      --green: #14f195;
-      --blue: #4f8cff;
-      --border: rgba(255, 255, 255, 0.12);
-    }
+    :root {{
+      --green-950:#031d12;
+      --green-900:#052b1a;
+      --green-800:#0a4426;
+      --green-700:#126334;
+      --green-500:#39a844;
+      --lime:#8aff3f;
+      --gold:#d9a63a;
+      --gold-light:#f7d77c;
+      --paper:#f4f5ef;
+      --ink:#173120;
+      --muted:#657267;
+      --line:#dce3d8;
+      --white:#ffffff;
+      --shadow:0 18px 50px rgba(2,35,20,.16);
+    }}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
+    * {{ box-sizing:border-box; margin:0; padding:0; }}
+    html {{ scroll-behavior:smooth; }}
+    body {{
+      font-family: Inter, Pretendard, "Noto Sans KR", Arial, sans-serif;
+      background:linear-gradient(180deg,#f9faf6 0%,#eef3ec 100%);
+      color:var(--ink);
+      line-height:1.55;
+    }}
+    a {{ color:inherit; text-decoration:none; }}
+    img {{ max-width:100%; display:block; }}
 
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
+    .container {{
+      width:min(1180px, calc(100% - 32px));
+      margin:auto;
+    }}
+
+    header {{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(3,29,18,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }}
+
+    .nav {{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }}
+
+    .brand {{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:white;
+      min-width:max-content;
+    }}
+
+    .brand-mark {{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:-2px;
+      color:var(--green-950);
       background:
-        radial-gradient(circle at 20% 20%, rgba(153, 69, 255, 0.18), transparent 32%),
-        radial-gradient(circle at 80% 30%, rgba(20, 241, 149, 0.12), transparent 28%),
-        linear-gradient(135deg, #04050d, #080b1d 50%, #050713);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        radial-gradient(circle at 35% 30%, #fff2b5 0 8%, transparent 9%),
+        radial-gradient(circle at 45% 40%, var(--gold-light), var(--gold) 58%, #8a5a0a 100%);
+      border:2px solid #f1cf72;
+      box-shadow:0 0 0 3px rgba(240,205,108,.15);
+    }}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.35;
+    .brand-text strong {{
+      display:block;
+      font-size:18px;
+      line-height:1;
+      letter-spacing:.5px;
+    }}
+
+    .brand-text span {{
+      font-size:10px;
+      opacity:.75;
+    }}
+
+    .nav-links {{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+      font-weight:700;
+    }}
+
+    .nav-links a {{
+      position:relative;
+      transition:.2s ease;
+    }}
+
+    .nav-links a:hover {{ color:var(--lime); }}
+    .nav-links a::after {{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:0;
+      height:2px;
+      background:var(--lime);
+      transition:.2s ease;
+    }}
+    .nav-links a:hover::after {{ width:100%; }}
+
+    .menu-btn {{
+      display:none;
+      border:0;
+      background:transparent;
+      color:white;
+      font-size:26px;
+      cursor:pointer;
+    }}
+
+    .hero {{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 78% 28%, rgba(115,255,51,.18), transparent 24%),
+        radial-gradient(circle at 28% 80%, rgba(67,180,69,.12), transparent 28%),
+        linear-gradient(135deg,#032315 0%,#073c22 55%,#031d12 100%);
+      color:white;
+      min-height:690px;
+      display:flex;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }}
+
+    .hero::before {{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.22;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
-    }
+        linear-gradient(90deg, transparent 48%, rgba(107,255,67,.14) 49%, transparent 50%),
+        linear-gradient(0deg, transparent 48%, rgba(107,255,67,.08) 49%, transparent 50%);
+      background-size:84px 84px;
+      transform:perspective(700px) rotateX(62deg) translateY(18%);
+      transform-origin:center bottom;
+    }}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    .hero::after {{
+      content:"";
+      position:absolute;
+      width:640px;
+      height:640px;
+      right:-190px;
+      top:-160px;
+      border:1px solid rgba(125,255,80,.18);
+      border-radius:50%;
+      box-shadow:
+        0 0 0 45px rgba(125,255,80,.025),
+        0 0 0 90px rgba(125,255,80,.018),
+        0 0 120px rgba(125,255,80,.12);
+    }}
 
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
+    .hero-grid {{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      gap:64px;
+      padding:90px 0;
+    }}
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(5, 7, 19, 0.72);
-      border-bottom: 1px solid var(--border);
-    }
+    .eyebrow {{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(138,255,63,.28);
+      background:rgba(138,255,63,.08);
+      color:#c8ff9d;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }}
 
-    nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+    h1 {{
+      font-size:clamp(68px, 10vw, 132px);
+      line-height:.82;
+      letter-spacing:-7px;
+      font-style:italic;
+      margin-bottom:14px;
+    }}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
+    .subtitle {{
+      color:#a8ff7d;
+      font-weight:800;
+      font-size:clamp(20px, 2.6vw, 34px);
+      margin-bottom:20px;
+    }}
 
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--purple), var(--green));
-      box-shadow: 0 0 30px rgba(153, 69, 255, 0.45);
-    }
+    .tagline {{
+      font-size:clamp(20px,2vw,30px);
+      font-weight:700;
+      margin-bottom:18px;
+    }}
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .hero-copy {{
+      color:rgba(255,255,255,.74);
+      max-width:600px;
+      font-size:16px;
+      margin-bottom:30px;
+    }}
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+    .hero-actions {{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:24px;
+    }}
 
-    .hero {
-      min-height: 82vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 100px 0 70px;
-    }
+    .btn {{
+      min-height:48px;
+      padding:0 20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border-radius:8px;
+      border:1px solid transparent;
+      font-weight:800;
+      transition:.2s ease;
+      cursor:pointer;
+    }}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      margin-bottom: 26px;
-      border: 1px solid rgba(20, 241, 149, 0.3);
-      border-radius: 999px;
-      color: var(--green);
-      background: rgba(20, 241, 149, 0.08);
-      font-size: 13px;
-    }
+    .btn-primary {{
+      background:linear-gradient(135deg,#8dff42,#37b83f);
+      color:#062414;
+      box-shadow:0 12px 30px rgba(88,231,65,.24);
+    }}
+    .btn-primary:hover {{ transform:translateY(-2px); box-shadow:0 16px 34px rgba(88,231,65,.32); }}
+    .btn-secondary {{
+      border-color:rgba(255,255,255,.34);
+      color:white;
+      background:rgba(255,255,255,.04);
+    }}
+    .btn-secondary:hover {{ border-color:var(--lime); color:var(--lime); }}
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 12px var(--green);
-    }
+    .mint-box {{
+      width:min(100%,650px);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:10px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.78);
+      font-size:12px;
+    }}
+    .mint-box code {{
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      flex:1;
+    }}
+    .copy-btn {{
+      border:0;
+      background:transparent;
+      color:var(--lime);
+      font-weight:800;
+      cursor:pointer;
+    }}
 
-    h1 {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: clamp(48px, 8vw, 92px);
-      line-height: 1.02;
-      letter-spacing: -4px;
-    }
+    .coin-wrap {{
+      display:grid;
+      place-items:center;
+      min-height:470px;
+      position:relative;
+    }}
 
-    .gradient-text {
-      display: block;
-      background: linear-gradient(90deg, var(--purple), var(--blue), var(--green));
-      background-size: 200% auto;
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: gradientMove 5s linear infinite;
-    }
+    .coin-glow {{
+      position:absolute;
+      width:430px;
+      height:430px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(124,255,71,.24),transparent 68%);
+      filter:blur(10px);
+    }}
 
-    @keyframes gradientMove {
-      to {
-        background-position: 200% center;
-      }
-    }
+    .coin {{
+      width:min(420px, 80vw);
+      aspect-ratio:1;
+      border-radius:50%;
+      position:relative;
+      transform:rotate(-11deg);
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 30% 20%, #fff1aa 0 4%, transparent 5%),
+        radial-gradient(circle at 45% 38%, #ffe69c 0 5%, #dba63f 33%, #b67617 62%, #654008 100%);
+      border:9px solid #e9c568;
+      box-shadow:
+        inset 0 0 0 6px #8e5b0c,
+        inset 0 0 0 10px #f0cf76,
+        0 34px 70px rgba(0,0,0,.45),
+        0 0 70px rgba(158,255,82,.16);
+    }}
 
-    .tagline {
-      margin-top: 24px;
-      font-size: clamp(22px, 3vw, 34px);
-      font-weight: 700;
-    }
+    .coin::before {{
+      content:"KOREAN CURIOSITY COIN";
+      position:absolute;
+      top:34px;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:2.4px;
+      color:#6b470d;
+    }}
 
-    .hero-description {
-      max-width: 720px;
-      margin: 22px auto 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
+    .coin::after {{
+      content:"EST. 2026";
+      position:absolute;
+      bottom:34px;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:2px;
+      color:#6b470d;
+    }}
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
+    .coin-inner {{
+      width:72%;
+      height:72%;
+      border-radius:50%;
+      border:2px solid rgba(103,68,11,.6);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      color:#0c5b2e;
+      text-align:center;
+      box-shadow:inset 0 0 30px rgba(255,255,255,.12);
+    }}
 
-    .button {
-      min-width: 170px;
-      padding: 14px 22px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-weight: 700;
-      transition: 0.25s ease;
-      cursor: pointer;
-    }
+    .coin-kcc {{
+      font-size:72px;
+      line-height:1;
+      letter-spacing:-5px;
+      font-style:italic;
+      font-weight:950;
+    }}
+    .coin-name {{
+      font-size:14px;
+      color:#164b2c;
+      font-weight:800;
+    }}
+    .coin-symbol {{
+      font-size:48px;
+      line-height:1;
+      margin-bottom:4px;
+      font-family:Georgia,serif;
+      font-style:italic;
+    }}
 
-    .button-primary {
-      color: #050713;
-      background: linear-gradient(90deg, var(--purple), var(--green));
-      border: none;
-    }
+    section {{
+      padding:92px 0;
+    }}
 
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.05);
-    }
+    .section-head {{
+      max-width:760px;
+      margin-bottom:38px;
+    }}
+    .section-head span {{
+      color:var(--green-700);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:12px;
+      font-weight:900;
+    }}
+    .section-head h2 {{
+      font-size:clamp(34px,5vw,56px);
+      line-height:1.04;
+      letter-spacing:-2px;
+      margin-top:8px;
+    }}
+    .section-head p {{
+      color:var(--muted);
+      margin-top:14px;
+    }}
 
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
-    }
+    .overview {{
+      margin-top:-52px;
+      position:relative;
+      z-index:5;
+    }}
 
-    section {
-      padding: 90px 0;
-    }
+    .card-grid {{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }}
 
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 38px;
-    }
+    .info-card {{
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:24px;
+      min-height:320px;
+      box-shadow:var(--shadow);
+    }}
 
-    .section-heading span {
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+    .info-card h3 {{
+      color:var(--green-700);
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      margin-bottom:18px;
+    }}
 
-    .section-heading h2 {
-      margin-top: 8px;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.1;
-    }
+    .big-number {{
+      font-size:28px;
+      font-weight:950;
+      line-height:1.1;
+      margin-bottom:20px;
+    }}
 
-    .section-heading p {
-      margin-top: 14px;
-      color: var(--muted);
-    }
+    .donut {{
+      width:154px;
+      height:154px;
+      margin:18px auto;
+      border-radius:50%;
+      background:conic-gradient(#0f6c36 0 20%, #3fa53e 20% 60%, #8bcf72 60% 90%, #cfeac5 90% 100%);
+      position:relative;
+    }}
+    .donut::after {{
+      content:"KCC";
+      position:absolute;
+      inset:27px;
+      border-radius:50%;
+      background:white;
+      display:grid;
+      place-items:center;
+      font-weight:950;
+      color:var(--green-700);
+    }}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+    .legend {{
+      display:grid;
+      gap:8px;
+      font-size:12px;
+      color:var(--muted);
+    }}
+    .legend div {{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }}
 
-    .card {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--card);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
+    .fact-list {{
+      display:grid;
+      gap:13px;
+      font-size:13px;
+    }}
+    .fact {{
+      display:flex;
+      gap:11px;
+      align-items:flex-start;
+    }}
+    .icon {{
+      width:28px;
+      height:28px;
+      border-radius:8px;
+      flex:0 0 28px;
+      background:#e9f7e3;
+      display:grid;
+      place-items:center;
+      color:var(--green-700);
+      font-weight:950;
+    }}
+    .fact b {{ display:block; font-size:12px; }}
+    .fact span {{ color:var(--muted); font-size:12px; }}
 
-    .card-label {
-      color: var(--muted);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-    }
+    .roadmap-mini {{
+      position:relative;
+      padding-left:24px;
+      display:grid;
+      gap:16px;
+    }}
+    .roadmap-mini::before {{
+      content:"";
+      position:absolute;
+      left:6px;
+      top:8px;
+      bottom:8px;
+      width:2px;
+      background:#45a846;
+    }}
+    .phase {{
+      position:relative;
+      font-size:12px;
+    }}
+    .phase::before {{
+      content:"";
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#45a846;
+      left:-22px;
+      top:4px;
+    }}
+    .phase.pending::before {{ background:white; border:2px solid #45a846; }}
+    .phase b {{ display:block; }}
+    .phase span {{ color:var(--muted); }}
 
-    .card-value {
-      margin-top: 10px;
-      font-size: 25px;
-      font-weight: 800;
-      word-break: break-word;
-    }
+    .quote {{
+      font-size:15px;
+      color:var(--muted);
+      margin-top:24px;
+    }}
+    .quote strong {{
+      color:var(--green-700);
+      display:block;
+      font-size:20px;
+      margin-top:18px;
+    }}
 
-    .mint-card {
-      grid-column: span 3;
-    }
+    .dark-section {{
+      background:var(--green-950);
+      color:white;
+      position:relative;
+      overflow:hidden;
+    }}
+    .dark-section::before {{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:.18;
+      background-image:radial-gradient(circle at 1px 1px, #8aff3f 1px, transparent 0);
+      background-size:28px 28px;
+    }}
+    .dark-section .container {{ position:relative; z-index:2; }}
 
-    .mint-box {
-      margin-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px;
-      border-radius: 12px;
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid var(--border);
-    }
+    .tokenomics-grid {{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }}
+    .bars {{ display:grid; gap:18px; }}
+    .bar-row {{ display:grid; gap:7px; }}
+    .bar-label {{ display:flex; justify-content:space-between; font-size:13px; }}
+    .bar {{
+      height:12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      overflow:hidden;
+    }}
+    .bar > span {{
+      display:block;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,#39a844,#8aff3f);
+    }}
 
-    .mint-address {
-      color: var(--green);
-      font-family: monospace;
-      font-size: 14px;
-      word-break: break-all;
-    }
+    .roadmap-grid {{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+    }}
+    .road-card {{
+      border:1px solid var(--line);
+      background:white;
+      border-radius:14px;
+      padding:22px;
+      min-height:190px;
+    }}
+    .road-card .num {{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:#e7f7df;
+      color:var(--green-700);
+      display:grid;
+      place-items:center;
+      font-weight:950;
+      margin-bottom:20px;
+    }}
+    .road-card h3 {{ margin-bottom:8px; }}
+    .road-card p {{ color:var(--muted); font-size:14px; }}
 
-    .copy-button {
-      flex-shrink: 0;
-      padding: 10px 14px;
-      border: 0;
-      border-radius: 9px;
-      background: var(--purple);
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    .about-grid {{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:42px;
+      align-items:center;
+    }}
+    .about-box {{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:32px;
+      box-shadow:var(--shadow);
+    }}
+    .about-symbol {{
+      width:120px;
+      height:120px;
+      border-radius:28px;
+      background:linear-gradient(145deg,#073c22,#031d12);
+      color:var(--lime);
+      display:grid;
+      place-items:center;
+      font-size:72px;
+      font-family:Georgia,serif;
+      font-style:italic;
+      margin-bottom:24px;
+    }}
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-    }
+    .whitepaper {{
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+      border-radius:20px;
+      padding:42px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }}
+    .whitepaper p {{ color:rgba(255,255,255,.7); max-width:680px; }}
 
-    .about-text p {
-      margin-bottom: 16px;
-      color: var(--muted);
-    }
+    footer {{
+      background:#02170e;
+      color:rgba(255,255,255,.62);
+      padding:34px 0;
+      font-size:12px;
+    }}
+    .footer-row {{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      flex-wrap:wrap;
+    }}
 
-    .principles {
-      display: grid;
-      gap: 14px;
-    }
+    @media (max-width: 980px) {{
+      .nav-links {{
+        position:absolute;
+        left:16px;
+        right:16px;
+        top:76px;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:18px;
+        border-radius:14px;
+        background:#062a19;
+        border:1px solid rgba(255,255,255,.1);
+      }}
+      .nav-links.open {{ display:flex; }}
+      .menu-btn {{ display:block; }}
+      .hero-grid,
+      .tokenomics-grid,
+      .about-grid {{ grid-template-columns:1fr; }}
+      .hero-grid {{ text-align:center; gap:20px; }}
+      .hero-copy, .mint-box {{ margin-left:auto; margin-right:auto; }}
+      .hero-actions {{ justify-content:center; }}
+      .coin-wrap {{ min-height:380px; }}
+      .card-grid {{ grid-template-columns:repeat(2,1fr); }}
+      .roadmap-grid {{ grid-template-columns:repeat(2,1fr); }}
+    }}
 
-    .principle {
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .principle strong {
-      color: var(--green);
-    }
-
-    .roadmap {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .roadmap-item {
-      position: relative;
-      padding: 28px 28px 28px 70px;
-    }
-
-    .roadmap-number {
-      position: absolute;
-      top: 26px;
-      left: 24px;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #050713;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--purple), var(--green));
-    }
-
-    .roadmap-item h3 {
-      margin-bottom: 10px;
-    }
-
-    .roadmap-item ul {
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .notice {
-      margin-top: 28px;
-      padding: 20px;
-      border: 1px solid rgba(255, 203, 92, 0.3);
-      border-radius: 14px;
-      color: #ffe2a0;
-      background: rgba(255, 203, 92, 0.07);
-      font-size: 14px;
-    }
-
-    footer {
-      padding: 34px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    @media (max-width: 820px) {
-      .nav-links {
-        display: none;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .grid,
-      .roadmap,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .mint-card {
-        grid-column: span 1;
-      }
-
-      .mint-box,
-      .footer-content {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .copy-button {
-        width: 100%;
-      }
-    }
+    @media (max-width: 620px) {{
+      .container {{ width:min(100% - 20px,1180px); }}
+      .nav {{ height:68px; }}
+      .brand-text span {{ display:none; }}
+      .hero {{ min-height:auto; }}
+      .hero-grid {{ padding:72px 0 94px; }}
+      h1 {{ font-size:76px; letter-spacing:-5px; }}
+      .coin {{ width:290px; }}
+      .coin::before, .coin::after {{ font-size:10px; }}
+      .coin-kcc {{ font-size:54px; }}
+      .card-grid, .roadmap-grid {{ grid-template-columns:1fr; }}
+      .overview {{ margin-top:-34px; }}
+      section {{ padding:72px 0; }}
+      .whitepaper {{ flex-direction:column; align-items:flex-start; padding:28px; }}
+    }}
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a class="brand" href="#home">
-          <div class="brand-logo">K</div>
-          <span>Korean Curiosity Coin</span>
-        </a>
 
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#token">Token</a>
-          <a href="#roadmap">Roadmap</a>
-          <a href="#community">Community</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+<header>
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <div class="brand-mark">K</div>
+      <div class="brand-text">
+        <strong>KCC</strong>
+        <span>Korean Curiosity Coin</span>
+      </div>
+    </a>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="status">
-          <span class="status-dot"></span>
-          Live on Solana
-        </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#tokenomics">TOKENOMICS</a>
+      <a href="#roadmap">ROADMAP</a>
+      <a href="#whitepaper">WHITEPAPER</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
 
-        <h1>
-          Korean Curiosity
-          <span class="gradient-text">Coin</span>
-        </h1>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</header>
 
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Built on Solana · Est. 2026</div>
+        <h1>KCC</h1>
+        <div class="subtitle">Korean Curiosity Coin</div>
         <div class="tagline">Curiosity Creates Value.</div>
-
-        <p class="hero-description">
-          Korean Curiosity Coin (KCC) is a community-driven Solana project
-          inspired by curiosity, innovation and the belief that small ideas
-          can grow into meaningful value.
+        <p class="hero-copy">
+          Born from a simple question: “Can I create my own cryptocurrency?”
+          That curiosity became KCC — a transparent, community-driven experiment
+          built on the Solana blockchain.
         </p>
 
-        <div class="hero-buttons">
-          <a
-            class="button button-primary"
-            href="https://raydium.io/swap/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Trade on Raydium
-          </a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://solscan.io/token/{mint}" target="_blank" rel="noopener">View Token</a>
+          <a class="btn btn-secondary" href="https://raydium.io/liquidity-pools/?ammId={pool}" target="_blank" rel="noopener">View Liquidity</a>
+          <a class="btn btn-secondary" href="#whitepaper">Whitepaper</a>
+        </div>
 
-          <a
-            class="button button-secondary"
-            href="https://solscan.io/token/EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on Solscan
-          </a>
+        <div class="mint-box">
+          <span>Mint</span>
+          <code id="mintAddress">{mint}</code>
+          <button class="copy-btn" id="copyMint">COPY</button>
         </div>
       </div>
-    </section>
 
-    <section id="token">
-      <div class="container">
-        <div class="section-heading">
-          <span>Token Information</span>
-          <h2>Transparent from the beginning.</h2>
-          <p>
-            KCC operates on the Solana blockchain with a fixed initial supply.
-          </p>
-        </div>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-label">Token Symbol</div>
-            <div class="card-value">KCC</div>
-          </div>
-
-          <div class="card">
-            <div class="card-label">Network</div>
-            <div class="card-value">Solana</div>
-          </div>
-
-          <div class="card">
-            <div class="card-label">Total Supply</div>
-            <div class="card-value">100,000,000 KCC</div>
-          </div>
-
-          <div class="card mint-card">
-            <div class="card-label">Official Mint Address</div>
-
-            <div class="mint-box">
-              <div class="mint-address" id="mintAddress">
-                EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc
-              </div>
-
-              <button class="copy-button" onclick="copyMintAddress()">
-                Copy Address
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="notice">
-          Always verify the official mint address before trading. KCC is an
-          early-stage community project and digital assets involve significant risk.
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-heading">
-          <span>About KCC</span>
-          <h2>Built from curiosity.</h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="card about-text">
-            <p>
-              Curiosity is the starting point of discovery. It leads people to
-              question existing ideas, explore new possibilities and build
-              better solutions.
-            </p>
-
-            <p>
-              KCC aims to grow as an open community where members can learn
-              about blockchain, exchange ideas and participate in the
-              development of a transparent digital project.
-            </p>
-
-            <p>
-              The project is currently in its early stage. Its direction and
-              future utility will be developed progressively with the community.
-            </p>
-          </div>
-
-          <div class="principles">
-            <div class="principle">
-              <strong>Explore</strong>
-              <p>Discover blockchain technology and new possibilities.</p>
-            </div>
-
-            <div class="principle">
-              <strong>Learn</strong>
-              <p>Share knowledge through transparent community participation.</p>
-            </div>
-
-            <div class="principle">
-              <strong>Build</strong>
-              <p>Turn curiosity and ideas into meaningful long-term value.</p>
-            </div>
+      <div class="coin-wrap" aria-label="KCC gold coin illustration">
+        <div class="coin-glow"></div>
+        <div class="coin">
+          <div class="coin-inner">
+            <div class="coin-symbol">ℭ</div>
+            <div class="coin-kcc">KCC</div>
+            <div class="coin-name">Korean Curiosity Coin</div>
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="roadmap">
-      <div class="container">
-        <div class="section-heading">
-          <span>Roadmap</span>
-          <h2>One step at a time.</h2>
-          <p>
-            The roadmap may evolve as the project and community develop.
-          </p>
-        </div>
-
-        <div class="roadmap">
-          <div class="card roadmap-item">
-            <div class="roadmap-number">1</div>
-            <h3>Foundation</h3>
-            <ul>
-              <li>KCC token creation</li>
-              <li>Raydium liquidity pool launch</li>
-              <li>Initial Solana ecosystem integration</li>
-            </ul>
-          </div>
-
-          <div class="card roadmap-item">
-            <div class="roadmap-number">2</div>
-            <h3>Project Identity</h3>
-            <ul>
-              <li>Official website launch</li>
-              <li>Whitepaper publication</li>
-              <li>Logo and token metadata development</li>
-            </ul>
-          </div>
-
-          <div class="card roadmap-item">
-            <div class="roadmap-number">3</div>
-            <h3>Community</h3>
-            <ul>
-              <li>Official social channels</li>
-              <li>Community participation</li>
-              <li>Holder growth and transparent updates</li>
-            </ul>
-          </div>
-
-          <div class="card roadmap-item">
-            <div class="roadmap-number">4</div>
-            <h3>Expansion</h3>
-            <ul>
-              <li>Token information platform applications</li>
-              <li>Partnership and utility exploration</li>
-              <li>Exchange listing preparation</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="community">
-      <div class="container">
-        <div class="section-heading">
-          <span>Community</span>
-          <h2>Join the journey.</h2>
-          <p>
-            Official social and community channels will be announced here as
-            they become available.
-          </p>
-        </div>
-
-        <div class="hero-buttons" style="justify-content: flex-start;">
-          <a
-            class="button button-secondary"
-            href="https://github.com/jungjinoh/kcc-website"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://solscan.io/token/EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Solscan
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="https://raydium.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Raydium
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <span>© 2026 Korean Curiosity Coin. All rights reserved.</span>
-      <span>Built on Solana.</span>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    function copyMintAddress() {
-      const mintAddress =
-        "EHuZ1T8r9NwmAFsUpAemM3vpJUk1sDDz9M82x13jrfSc";
+  <div class="container overview">
+    <div class="card-grid">
+      <article class="info-card">
+        <h3>Tokenomics</h3>
+        <div class="big-number">100,000,000 KCC</div>
+        <div class="donut"></div>
+        <div class="legend">
+          <div><span>Creator</span><b>20%</b></div>
+          <div><span>Community</span><b>40%</b></div>
+          <div><span>Liquidity</span><b>30%</b></div>
+          <div><span>Reserve</span><b>10%</b></div>
+        </div>
+      </article>
 
-      navigator.clipboard.writeText(mintAddress)
-        .then(() => {
-          const button = document.querySelector(".copy-button");
-          button.textContent = "Copied!";
+      <article class="info-card">
+        <h3>Token Information</h3>
+        <div class="fact-list">
+          <div class="fact"><div class="icon">N</div><div><b>Name</b><span>Korean Curiosity Coin</span></div></div>
+          <div class="fact"><div class="icon">S</div><div><b>Symbol</b><span>KCC</span></div></div>
+          <div class="fact"><div class="icon">B</div><div><b>Blockchain</b><span>Solana</span></div></div>
+          <div class="fact"><div class="icon">9</div><div><b>Decimals</b><span>9</span></div></div>
+          <div class="fact"><div class="icon">Σ</div><div><b>Total Supply</b><span>100,000,000 KCC</span></div></div>
+          <div class="fact"><div class="icon">✓</div><div><b>Mint Authority</b><span>Renounced</span></div></div>
+          <div class="fact"><div class="icon">✓</div><div><b>Freeze Authority</b><span>Disabled</span></div></div>
+        </div>
+      </article>
 
-          setTimeout(() => {
-            button.textContent = "Copy Address";
-          }, 1800);
-        })
-        .catch(() => {
-          alert("Mint address: " + mintAddress);
-        });
-    }
-  </script>
+      <article class="info-card">
+        <h3>Roadmap</h3>
+        <div class="roadmap-mini">
+          <div class="phase"><b>Phase 1</b><span>Create KCC</span></div>
+          <div class="phase"><b>Phase 2</b><span>Launch Website</span></div>
+          <div class="phase"><b>Phase 3</b><span>Build Community</span></div>
+          <div class="phase pending"><b>Phase 4</b><span>Expand DEX Presence</span></div>
+          <div class="phase pending"><b>Phase 5</b><span>Major Listing Preparation</span></div>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <h3>About KCC</h3>
+        <div class="about-symbol">ℭ</div>
+        <p class="quote">
+          KCC was born from a simple question.<br><br>
+          No empty promises.<br>
+          No fake guarantees.<br>
+          Just curiosity, transparency, and growth.
+          <strong>Let's keep being curious.</strong>
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <section class="dark-section" id="tokenomics">
+    <div class="container">
+      <div class="section-head">
+        <span>Tokenomics</span>
+        <h2>Simple, clear, and transparent.</h2>
+        <p>KCC’s initial allocation is structured to support community growth, liquidity, and long-term development.</p>
+      </div>
+
+      <div class="tokenomics-grid">
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label"><span>Community</span><b>40%</b></div>
+            <div class="bar"><span style="width:40%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Liquidity</span><b>30%</b></div>
+            <div class="bar"><span style="width:30%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Creator</span><b>20%</b></div>
+            <div class="bar"><span style="width:20%"></span></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>Reserve</span><b>10%</b></div>
+            <div class="bar"><span style="width:10%"></span></div>
+          </div>
+        </div>
+
+        <div class="about-box" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);">
+          <h3 style="font-size:26px;margin-bottom:12px;">Token Details</h3>
+          <p style="color:rgba(255,255,255,.72);margin-bottom:18px;">
+            KCC is a Solana SPL token with a fixed supply of 100 million tokens.
+          </p>
+          <div class="fact-list">
+            <div class="fact"><div class="icon">S</div><div><b style="color:white">Network</b><span style="color:rgba(255,255,255,.65)">Solana</span></div></div>
+            <div class="fact"><div class="icon">Σ</div><div><b style="color:white">Supply</b><span style="color:rgba(255,255,255,.65)">100,000,000 KCC</span></div></div>
+            <div class="fact"><div class="icon">9</div><div><b style="color:white">Decimals</b><span style="color:rgba(255,255,255,.65)">9</span></div></div>
+            <div class="fact"><div class="icon">L</div><div><b style="color:white">Liquidity Pool</b><span style="color:rgba(255,255,255,.65)">Raydium CPMM</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <span>Roadmap</span>
+        <h2>From curiosity to community.</h2>
+        <p>KCC grows step by step. Each phase is focused on building a real, transparent foundation.</p>
+      </div>
+
+      <div class="roadmap-grid">
+        <article class="road-card"><div class="num">1</div><h3>Token Creation</h3><p>Create KCC on Solana and establish the initial token structure.</p></article>
+        <article class="road-card"><div class="num">2</div><h3>Website Launch</h3><p>Publish the official KCC website and project information.</p></article>
+        <article class="road-card"><div class="num">3</div><h3>Community</h3><p>Build transparent communication channels and grow awareness.</p></article>
+        <article class="road-card"><div class="num">4</div><h3>DEX Expansion</h3><p>Improve liquidity, visibility, and token information across platforms.</p></article>
+        <article class="road-card"><div class="num">5</div><h3>Listing Readiness</h3><p>Prepare documentation, governance, and credibility for future opportunities.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background:#eef3ec;">
+    <div class="container about-grid">
+      <div>
+        <div class="section-head">
+          <span>About KCC</span>
+          <h2>A project powered by curiosity.</h2>
+          <p>KCC began as a personal experiment and is evolving into a public project focused on transparency, learning, and community participation.</p>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/jungjinoh/kcc-website" target="_blank" rel="noopener">View GitHub</a>
+      </div>
+
+      <div class="about-box">
+        <div class="about-symbol">ℭ</div>
+        <h3 style="font-size:28px;margin-bottom:12px;">Why KCC?</h3>
+        <p style="color:var(--muted);">
+          Curiosity is often the first step toward innovation. KCC represents the idea that asking questions, learning openly, and building transparently can create real value.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section" id="whitepaper">
+    <div class="container">
+      <div class="whitepaper">
+        <div>
+          <div class="section-head" style="margin:0;">
+            <span style="color:#a8ff7d;">Whitepaper</span>
+            <h2 style="font-size:40px;">KCC Whitepaper</h2>
+            <p>The official whitepaper is being prepared. It will cover project goals, token structure, roadmap, transparency policy, and community principles.</p>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="javascript:void(0)" onclick="alert('KCC Whitepaper is being prepared.')">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-row">
+    <div>© 2026 Korean Curiosity Coin (KCC). All rights reserved.</div>
+    <div>Curiosity Creates Value.</div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  document.getElementById('copyMint').addEventListener('click', async () => {{
+    const text = document.getElementById('mintAddress').textContent.trim();
+    try {{
+      await navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyMint');
+      btn.textContent = 'COPIED';
+      setTimeout(() => btn.textContent = 'COPY', 1500);
+    }} catch (e) {{
+      alert(text);
+    }}
+  }});
+</script>
 </body>
 </html>
+"""
+
+out = Path("/mnt/data/kcc_index_v2.html")
+out.write_text(html, encoding="utf-8")
+print(f"Created: {out} ({out.stat().st_size:,} bytes)")
