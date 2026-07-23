@@ -906,6 +906,128 @@ footer {
   .hero-copy-v2 .hero-tagline{font-size:19px;}
 }
 
+
+
+/* ==================================================
+   KCC HERO v4.1 — BORDERLESS PCB BLEND
+   Keeps the existing PCB background image, removes the
+   rectangular frame, and softly blends the image into
+   the homepage background.
+================================================== */
+.hero-visual {
+  overflow: visible;
+  padding-top: 0;
+}
+
+.coin-wrap-v2 {
+  width: min(450px, 76vw);
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Remove the previous rectangular frame/shadow */
+.coin-wrap-v2 img {
+  width: 100%;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: brightness(.96) contrast(1.12) saturate(1.12)
+          drop-shadow(0 18px 28px rgba(0,0,0,.34))
+          drop-shadow(0 0 18px rgba(111,255,63,.20));
+
+  /* Feather the PCB image edges into the page background */
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 72% at 50% 48%,
+    #000 0%,
+    #000 56%,
+    rgba(0,0,0,.92) 66%,
+    rgba(0,0,0,.52) 80%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 78% 72% at 50% 48%,
+    #000 0%,
+    #000 56%,
+    rgba(0,0,0,.92) 66%,
+    rgba(0,0,0,.52) 80%,
+    transparent 100%
+  );
+}
+
+/* Soft PCB glow behind the image */
+.coin-wrap-v2::before {
+  left: 8%;
+  right: 8%;
+  bottom: 4%;
+  height: 24%;
+  opacity: .58;
+  filter: blur(18px);
+}
+
+/* Slimmer energy ring with no box-like clipping */
+.coin-wrap-v2::after {
+  left: 2%;
+  top: 48%;
+  width: 96%;
+  height: 23%;
+  border-width: 2px;
+  opacity: .76;
+  box-shadow:
+    0 0 7px rgba(175,255,105,.82),
+    0 0 17px rgba(76,255,67,.58),
+    0 0 31px rgba(38,220,73,.30);
+}
+
+.coin-glow {
+  width: 92%;
+  opacity: .68;
+  filter: blur(20px);
+}
+
+.hero-visual .eyebrow {
+  margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+  .coin-wrap-v2 {
+    width: min(390px, 86vw);
+    margin: 0 auto;
+  }
+
+  .coin-wrap-v2 img {
+    -webkit-mask-image: radial-gradient(
+      ellipse 82% 73% at 50% 48%,
+      #000 0%,
+      #000 57%,
+      rgba(0,0,0,.90) 68%,
+      rgba(0,0,0,.48) 82%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 82% 73% at 50% 48%,
+      #000 0%,
+      #000 57%,
+      rgba(0,0,0,.90) 68%,
+      rgba(0,0,0,.48) 82%,
+      transparent 100%
+    );
+  }
+
+  .coin-wrap-v2::after {
+    left: 1%;
+    width: 98%;
+    top: 49%;
+    height: 22%;
+    border-width: 1.5px;
+  }
+
+  .hero-visual .eyebrow {
+    margin-top: 2px;
+  }
+}
+
 </style>
 </head>
 <body>
