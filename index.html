@@ -841,6 +841,71 @@ footer {
   .hero-visual::after { animation:none; }
 }
 
+
+
+/* ==================================================
+   KCC v4.0 COMPACT HERO REFINEMENT
+   - Smaller coin composition
+   - Thinner energy orbit
+   - Tighter mobile hero spacing
+   - Better first-screen balance
+================================================== */
+.hero{padding-top:38px;padding-bottom:56px;}
+.hero-v2{row-gap:26px;}
+.hero-visual{padding-top:0;margin-bottom:2px;}
+.coin-wrap-v2{width:min(470px,78vw);}
+.coin-wrap-v2::after{
+  left:-1%;
+  width:102%;
+  top:52%;
+  height:20%;
+  border-width:2px;
+  opacity:.76;
+  box-shadow:0 0 5px rgba(150,255,85,.78),0 0 12px rgba(83,255,60,.52),0 0 24px rgba(40,225,75,.28);
+  filter:drop-shadow(0 0 5px rgba(120,255,60,.58));
+}
+.coin-wrap-v2::before{height:24%;bottom:-1%;filter:blur(15px);opacity:.68;}
+.coin-wrap-v2 img{border-radius:28px;box-shadow:0 24px 58px rgba(0,0,0,.45),0 0 18px rgba(138,255,63,.22),0 0 40px rgba(56,230,73,.12);}
+.hero-visual::after{height:50px;bottom:4px;filter:blur(17px);opacity:.54;}
+.hero-visual .eyebrow{margin-top:20px;padding:8px 16px;}
+.hero-copy-v2 h1{font-size:clamp(58px,8vw,94px);line-height:.94;margin-top:14px;}
+.hero-copy-v2 .hero-name{font-size:clamp(28px,4vw,48px);margin-top:10px;}
+.hero-copy-v2 .hero-tagline{font-size:clamp(21px,3vw,34px);margin-top:10px;}
+.value-strip-v2{margin-top:22px;}
+.actions-v2{margin-top:20px;}
+
+@media (max-width:760px){
+  header .nav{min-height:74px;}
+  .brand img{width:58px;height:58px;}
+  .hero{padding-top:18px;padding-bottom:38px;}
+  .hero-v2{row-gap:18px;}
+  .hero-visual{padding-top:0;}
+  .coin-wrap-v2{width:min(380px,82vw);margin-inline:auto;}
+  .coin-wrap-v2 img{border-radius:22px;}
+  .coin-wrap-v2::after{left:0;width:100%;top:53%;height:18%;border-width:1.5px;}
+  .coin-wrap-v2::before{height:20%;bottom:0;}
+  .hero-visual::after{height:34px;bottom:6px;}
+  .hero-visual .eyebrow{margin-top:17px;font-size:9px;padding:7px 13px;}
+  .hero-copy-v2 h1{font-size:62px;margin-top:8px;}
+  .hero-copy-v2 .hero-name{font-size:27px;margin-top:7px;}
+  .hero-copy-v2 .hero-tagline{font-size:21px;margin-top:7px;}
+  .value-strip-v2{margin-top:18px;}
+  .value-item-v2{padding:15px 6px;}
+  .value-item-v2 strong{font-size:13px;}
+  .actions-v2{margin-top:17px;gap:10px;}
+  .actions-v2 .btn{min-height:52px;}
+  .mint-box-v2{margin-top:14px;}
+  .live-stats-v2{margin-top:14px;gap:10px;}
+  .live-stats-v2 .live-stat{min-height:96px;}
+}
+
+@media (max-width:390px){
+  .coin-wrap-v2{width:80vw;}
+  .hero-copy-v2 h1{font-size:56px;}
+  .hero-copy-v2 .hero-name{font-size:24px;}
+  .hero-copy-v2 .hero-tagline{font-size:19px;}
+}
+
 </style>
 </head>
 <body>
